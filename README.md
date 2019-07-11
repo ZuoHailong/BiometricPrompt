@@ -37,9 +37,11 @@
 
 - FingerprintVerifyManager 通过 Builder 初始化并管理指纹识别功能
 
-- FingerprintCallback 指纹识别监听，提供 onSucceeded()、onFailed()、onCancel()、onError(String errorMsg)四个回调方法
+- FingerprintCallback 指纹识别监听，提供 onSucceeded()、onFailed()、onCancel()、onUsepwd() 、onError(String errorMsg)五个回调方法
 
     当用户取消指纹验证框时，回调 onCancel() 方法；
+    
+    当用户选择密码验证时，回调onUsepwd()方法
     
     当指纹验证出现异常时，回调onError(String errorMsg) 方法返回具体异常信息，诸如 “手指移动过快” “尝试次数过多” 等
 
@@ -47,19 +49,23 @@
     
 ## Builder详细用法
 
-#### 1、设置验证结果监听
+#### 1、设置验证结果监听，必需
 ```
 builder.callback(new FingerprintCallback())
 ```
-#### 2、设置验证框中指纹图标的颜色
+#### 2、设置验证框中指纹图标的颜色，可选
 ```
 builder.fingerprintColor(@ColorInt int color)
 ```
-#### 3、设置取消按钮的文本色
+#### 3、设置取消按钮的文本色，可选
 ```
 builder.cancelTextColor(@ColorInt int color)
 ```
-#### 4、开始构建并弹出更新框
+#### 4、设置密码验证按钮是否显示，默认不显示，可选
+```
+builder.usepwdVisible(boolean isVisible)
+```
+#### 5、开始构建并弹出更新框，必需
 ```
 builder.build()
 ```
