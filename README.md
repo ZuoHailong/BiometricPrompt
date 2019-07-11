@@ -22,7 +22,7 @@
 
 ```
     dependencies {
-            implementation 'com.github.ZuoHailong:BiometricPrompt:0.1'
+            implementation 'com.github.ZuoHailong:BiometricPrompt:0.1.2'
 	}
 	
 ```
@@ -37,13 +37,13 @@
 
 - FingerprintVerifyManager 通过 Builder 初始化并管理指纹识别功能
 
-- FingerprintCallback 指纹识别监听，提供 onSucceeded()、onFailed()、onCancel()、onUsepwd() 、onError(String errorMsg)五个回调方法
+- FingerprintCallback 指纹识别监听，提供 onSucceeded()、onFailed()、onCancel()、onUsepwd() 、onError(String errorMsg) 五个回调方法
 
     当用户取消指纹验证框时，回调 onCancel() 方法；
     
-    当用户选择密码验证时，回调onUsepwd()方法
+    当用户选择密码验证时，回调 onUsepwd() 方法
     
-    当指纹验证出现异常时，回调onError(String errorMsg) 方法返回具体异常信息，诸如 “手指移动过快” “尝试次数过多” 等
+    当指纹验证出现异常时，回调 onError(String errorMsg) 方法返回具体异常信息，诸如 “手指移动过快” “尝试次数过多” 等
 
 ` 用法的详细说明请移步我的博客： `[https://blog.csdn.net/hailong0529/article/details/95116481](https://blog.csdn.net/hailong0529/article/details/95116481)
     
@@ -65,7 +65,11 @@ builder.cancelTextColor(@ColorInt int color)
 ```
 builder.usepwdVisible(boolean isVisible)
 ```
-#### 5、开始构建并弹出更新框，必需
+#### 5、设置密码验证按钮的文本色，可选
+```
+builder.usepwdTextColor(@ColorInt int color)
+```
+#### 6、开始构建并弹出更新框，必需
 ```
 builder.build()
 ```
