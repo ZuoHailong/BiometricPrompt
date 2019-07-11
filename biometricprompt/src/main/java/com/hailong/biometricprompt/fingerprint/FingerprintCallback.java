@@ -16,6 +16,11 @@ public interface FingerprintCallback {
     void onFailed();
 
     /**
+     * 密码登录
+     */
+    void onUsepwd();
+
+    /**
      * 取消验证
      */
     void onCancel();

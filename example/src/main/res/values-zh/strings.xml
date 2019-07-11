@@ -2,4 +2,5 @@
     <string name="app_name">生物识别</string>
     <string name="fingerprint_recognition">指纹识别</string>
     <string name="fingerprint_cancel">取消指纹识别</string>
+    <string name="fingerprint_usepwd">密码登录</string>
 </resources>

@@ -29,7 +29,7 @@ public class FingerprintDialog extends DialogFragment {
     private static Context context;
     private static FingerprintDialog mDialog;
     private OnDialogActionListener actionListener;
-    private TextView tvTip, tvCancel;
+    private TextView tvTip, tvCancel, tvUsepwd;
     private ImageView ivFingerprint;
 
     private VerificationDialogStyleBean verificationDialogStyleBean;
@@ -41,6 +41,12 @@ public class FingerprintDialog extends DialogFragment {
         View view = inflater.inflate(R.layout.biometricprompt_layout_fingerprint_dialog, container);
         ivFingerprint = view.findViewById(R.id.ivFingerprint);
         tvTip = view.findViewById(R.id.tvTip);
+        tvUsepwd = view.findViewById(R.id.tvUsepwd);
+        tvUsepwd.setOnClickListener(v -> {
+            if (actionListener != null)
+                actionListener.onUsepwd();
+            dismiss();
+        });
         tvCancel = view.findViewById(R.id.tvCancel);
         tvCancel.setOnClickListener(v -> {
             if (actionListener != null)
@@ -58,6 +64,13 @@ public class FingerprintDialog extends DialogFragment {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//Android 5.0
                     drawable.setTint(verificationDialogStyleBean.getFingerprintColor());
                 }
+            }
+            if (verificationDialogStyleBean.isUsepwdVisible()) {
+                tvUsepwd.setVisibility(View.VISIBLE);
+                view.findViewById(R.id.view).setVisibility(View.VISIBLE);
+            } else {
+                tvUsepwd.setVisibility(View.GONE);
+                view.findViewById(R.id.view).setVisibility(View.GONE);
             }
         }
 
@@ -110,6 +123,8 @@ public class FingerprintDialog extends DialogFragment {
     }
 
     public interface OnDialogActionListener {
+        void onUsepwd();
+
         void onCancle();
 
         void onDismiss();

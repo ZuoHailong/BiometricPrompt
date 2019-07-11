@@ -2,4 +2,5 @@
     <string name="app_name">Biometric Prompt</string>
     <string name="fingerprint_recognition">Fingerprint recognition</string>
     <string name="fingerprint_cancel">Cancel fingerprint recognition. </string>
+    <string name="fingerprint_usepwd">Login with a password. </string>
 </resources>

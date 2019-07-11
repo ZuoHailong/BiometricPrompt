@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
             builder.callback(fingerprintCallback)
                     .cancelTextColor(ContextCompat.getColor(MainActivity.this, R.color.biometricprompt_color_primary))
                     .fingerprintColor(ContextCompat.getColor(MainActivity.this, R.color.biometricprompt_color_primary))
+                    .usepwdVisible(true)
                     .build();
         });
     }
@@ -34,6 +35,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onFailed() {
             Toast.makeText(MainActivity.this, getString(R.string.biometricprompt_verify_failed), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onUsepwd() {
+            Toast.makeText(MainActivity.this, getString(R.string.fingerprint_usepwd), Toast.LENGTH_SHORT).show();
         }
 
         @Override

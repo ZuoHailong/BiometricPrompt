@@ -35,14 +35,38 @@
             android:layout_height="1dp"
             android:background="#e7e7e8" />
 
-        <TextView
-            android:id="@+id/tvCancel"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/biometricprompt_cancel"
-            android:textColor="@color/biometricprompt_color_primary"
-            android:textSize="16sp" />
+            android:orientation="horizontal">
+            
+            <TextView
+                android:id="@+id/tvCancel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/biometricprompt_cancel"
+                android:textColor="@color/biometricprompt_color_primary"
+                android:textSize="16sp" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#e7e7e8" />
+
+            <TextView
+                android:id="@+id/tvUsepwd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/biometricprompt_verify_usepwd"
+                android:textColor="@color/biometricprompt_color_primary"
+                android:textSize="16sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

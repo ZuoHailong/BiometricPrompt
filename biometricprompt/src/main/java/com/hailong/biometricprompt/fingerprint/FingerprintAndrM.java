@@ -99,6 +99,12 @@ public class FingerprintAndrM implements IFingerprint {
      */
     private FingerprintDialog.OnDialogActionListener dialogActionListener = new FingerprintDialog.OnDialogActionListener() {
         @Override
+        public void onUsepwd() {
+            if (fingerprintCallback != null)
+                fingerprintCallback.onUsepwd();
+        }
+
+        @Override
         public void onCancle() {//取消指纹验证，通知调用者
             if (fingerprintCallback != null)
                 fingerprintCallback.onCancel();

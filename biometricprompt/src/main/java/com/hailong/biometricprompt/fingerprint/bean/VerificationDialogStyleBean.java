@@ -7,6 +7,7 @@ package com.hailong.biometricprompt.fingerprint.bean;
 public class VerificationDialogStyleBean {
     private int cancelTextColor;
     private int fingerprintColor;
+    private boolean usepwdVisible;
 
     public int getCancelTextColor() {
         return cancelTextColor;
@@ -22,5 +23,13 @@ public class VerificationDialogStyleBean {
 
     public void setFingerprintColor(int fingerprintColor) {
         this.fingerprintColor = fingerprintColor;
+    }
+
+    public boolean isUsepwdVisible() {
+        return usepwdVisible;
+    }
+
+    public void setUsepwdVisible(boolean usepwdVisible) {
+        this.usepwdVisible = usepwdVisible;
     }
 }

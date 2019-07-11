@@ -32,6 +32,7 @@ public class FingerprintVerifyManager {
         VerificationDialogStyleBean bean = new VerificationDialogStyleBean();
         bean.setCancelTextColor(builder.cancelTextColor);
         bean.setFingerprintColor(builder.fingerprintColor);
+        bean.setUsepwdVisible(builder.usepwdVisible);
 
         fingerprint.authenticate(builder.context, bean, builder.callback);
     }
@@ -48,6 +49,7 @@ public class FingerprintVerifyManager {
         /*可选字段*/
         private int cancelTextColor;
         private int fingerprintColor;
+        private boolean usepwdVisible;
 
         /**
          * 构建器
@@ -85,6 +87,16 @@ public class FingerprintVerifyManager {
          */
         public Builder fingerprintColor(@ColorInt int color) {
             this.fingerprintColor = color;
+            return this;
+        }
+
+        /**
+         * 密码登录按钮是否显示
+         *
+         * @param isVisible
+         */
+        public Builder usepwdVisible(boolean isVisible) {
+            this.usepwdVisible = isVisible;
             return this;
         }
 
