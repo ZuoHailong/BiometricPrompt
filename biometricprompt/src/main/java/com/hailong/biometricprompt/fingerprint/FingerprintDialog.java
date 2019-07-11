@@ -58,6 +58,8 @@ public class FingerprintDialog extends DialogFragment {
         if (verificationDialogStyleBean != null) {
             if (verificationDialogStyleBean.getCancelTextColor() != 0)
                 tvCancel.setTextColor(verificationDialogStyleBean.getCancelTextColor());
+            if (verificationDialogStyleBean.getUsepwdTextColor() != 0)
+                tvUsepwd.setTextColor(verificationDialogStyleBean.getUsepwdTextColor());
 
             if (verificationDialogStyleBean.getFingerprintColor() != 0) {
                 Drawable drawable = ivFingerprint.getDrawable();

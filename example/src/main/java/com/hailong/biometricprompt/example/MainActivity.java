@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
             FingerprintVerifyManager.Builder builder = new FingerprintVerifyManager.Builder(MainActivity.this);
             builder.callback(fingerprintCallback)
                     .cancelTextColor(ContextCompat.getColor(MainActivity.this, R.color.biometricprompt_color_primary))
+                    .usepwdTextColor(ContextCompat.getColor(MainActivity.this, R.color.biometricprompt_color_FF5555))
                     .fingerprintColor(ContextCompat.getColor(MainActivity.this, R.color.biometricprompt_color_primary))
                     .usepwdVisible(true)
                     .build();

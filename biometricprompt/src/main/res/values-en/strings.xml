@@ -4,6 +4,7 @@
     <string name="biometricprompt_finger_add_confirm">Confirm</string>
     <string name="biometricprompt_cancel">Cancel</string>
     <string name="biometricprompt_verify_fingerprint">Please verify your fingerprints.</string>
+    <string name="biometricprompt_verify_usepwd">Password</string>
     <string name="biometricprompt_verify_success">Verification success</string>
     <string name="biometricprompt_verify_failed">Verification failure</string>
     <string name="biometricprompt_verify_error_below_m">Fingerprint recognition support not available below Android 6.0. </string>
