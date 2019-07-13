@@ -87,7 +87,7 @@ public class FingerprintAndrM implements IFingerprint {
         }
         //指纹加密，提前进行Cipher初始化，防止指纹认证时还没有初始化完成
         try {
-            cryptoObject = new CryptoObjectHelper().buildCryptoObject();
+            cryptoObject = new FingerprintManagerCompat.CryptoObject(new CipherHelper().createCipher());
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,6 +1,6 @@
 package com.hailong.biometricprompt.fingerprint;
 
-import android.hardware.fingerprint.FingerprintManager;
+import android.hardware.biometrics.BiometricPrompt;
 import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
@@ -19,9 +19,9 @@ import javax.crypto.KeyGenerator;
  * 加密类，用于判定指纹合法性
  */
 @RequiresApi(Build.VERSION_CODES.M)
-public class CryptoObjectHelper {
+public class CipherHelper {
     // This can be key name you want. Should be unique for the app.
-    static final String KEY_NAME = "com.hailong.fingerprint.CryptoObjectHelper";
+    static final String KEY_NAME = "com.hailong.fingerprint.CipherHelper";
 
     // We always use this keystore on Android.
     static final String KEYSTORE_NAME = "AndroidKeyStore";
@@ -35,20 +35,23 @@ public class CryptoObjectHelper {
             ENCRYPTION_PADDING;
     final KeyStore _keystore;
 
-    public CryptoObjectHelper() throws Exception {
+    public CipherHelper() throws Exception {
         _keystore = KeyStore.getInstance(KEYSTORE_NAME);
         _keystore.load(null);
     }
 
-    public FingerprintManagerCompat.CryptoObject buildCryptoObject() {
+    /**
+     * 获得Cipher
+     * @return
+     */
+    public Cipher createCipher() {
         Cipher cipher = null;
         try {
             cipher = createCipher(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // FingerprintManager.CryptoObject 的初始化需要传入Cipher 或者 Signature
-        return cipher == null ? null : new FingerprintManagerCompat.CryptoObject(cipher);
+        return cipher;
     }
 
     /**

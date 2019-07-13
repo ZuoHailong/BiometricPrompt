@@ -21,19 +21,31 @@ public class FingerprintVerifyManager {
     public FingerprintVerifyManager(Builder builder) {
         IFingerprint fingerprint;
         if (AndrVersionUtil.isAboveAndrP()) {
-            fingerprint = FingerprintAndrM.newInstance();
+            if (builder.enableAndroidP)
+                fingerprint = FingerprintAndrP.newInstance();
+            else
+                fingerprint = FingerprintAndrM.newInstance();
         } else if (AndrVersionUtil.isAboveAndrM()) {
             fingerprint = FingerprintAndrM.newInstance();
         } else {//Android 6.0 以下官方未开放指纹识别，某些机型自行支持的情况暂不做处理
             builder.callback.onError(builder.context.getString(R.string.biometricprompt_verify_error_below_m));
             return;
         }
-        //设定指纹验证框的样式
+        /**
+         * 设定指纹验证框的样式
+         */
+        // >= Android 6.0
         VerificationDialogStyleBean bean = new VerificationDialogStyleBean();
         bean.setCancelTextColor(builder.cancelTextColor);
         bean.setUsepwdTextColor(builder.usepwdTextColor);
         bean.setFingerprintColor(builder.fingerprintColor);
         bean.setUsepwdVisible(builder.usepwdVisible);
+
+        // >= Android 9.0
+        bean.setTitle(builder.title);
+        bean.setSubTitle(builder.subTitle);
+        bean.setDescription(builder.description);
+        bean.setCancelBtnText(builder.cancelBtnText);
 
         fingerprint.authenticate(builder.context, bean, builder.callback);
     }
@@ -52,6 +64,12 @@ public class FingerprintVerifyManager {
         private int usepwdTextColor;
         private int fingerprintColor;
         private boolean usepwdVisible;
+
+        private boolean enableAndroidP;//在Android 9.0系统上，是否开启google提供的验证方式及验证框
+        private String title;
+        private String subTitle;
+        private String description;
+        private String cancelBtnText;//取消按钮文字
 
         /**
          * 构建器
@@ -112,6 +130,55 @@ public class FingerprintVerifyManager {
             return this;
         }
 
+        /**
+         * 在 >= Android 9.0 系统上，是否开启google提供的验证方式及验证框
+         *
+         * @param enableAndroidP
+         */
+        public Builder enableAndroidP(boolean enableAndroidP) {
+            this.enableAndroidP = enableAndroidP;
+            return this;
+        }
+
+        /**
+         * >= Android 9.0 的验证框的主标题
+         *
+         * @param title
+         */
+        public Builder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        /**
+         * >= Android 9.0 的验证框的副标题
+         *
+         * @param subTitle
+         */
+        public Builder subTitle(String subTitle) {
+            this.subTitle = subTitle;
+            return this;
+        }
+
+        /**
+         * >= Android 9.0 的验证框的描述内容
+         *
+         * @param description
+         */
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        /**
+         * >= Android 9.0 的验证框的取消按钮的文字
+         *
+         * @param cancelBtnText
+         */
+        public Builder cancelBtnText(String cancelBtnText) {
+            this.cancelBtnText = cancelBtnText;
+            return this;
+        }
 
         /**
          * 开始构建

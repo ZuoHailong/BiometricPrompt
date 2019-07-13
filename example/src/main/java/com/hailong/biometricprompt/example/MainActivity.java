@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
                     .usepwdTextColor(ContextCompat.getColor(MainActivity.this, R.color.biometricprompt_color_FF5555))
                     .fingerprintColor(ContextCompat.getColor(MainActivity.this, R.color.biometricprompt_color_primary))
                     .usepwdVisible(true)
+                    .enableAndroidP(true)
                     .build();
         });
     }
