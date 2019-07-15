@@ -3,4 +3,6 @@
     <string name="fingerprint_recognition">指纹识别</string>
     <string name="fingerprint_cancel">取消指纹识别</string>
     <string name="fingerprint_usepwd">密码验证</string>
+    <string name="biometricprompt_finger_add">请先添加指纹</string>
+    <string name="biometricprompt_finger_add_confirm">确认添加</string>
 </resources>

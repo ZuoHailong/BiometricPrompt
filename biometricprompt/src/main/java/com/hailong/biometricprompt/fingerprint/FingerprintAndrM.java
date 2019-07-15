@@ -1,11 +1,9 @@
 package com.hailong.biometricprompt.fingerprint;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.Context;
+import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
-import android.provider.Settings;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
@@ -13,6 +11,7 @@ import androidx.core.os.CancellationSignal;
 
 import com.hailong.biometricprompt.R;
 import com.hailong.biometricprompt.fingerprint.bean.VerificationDialogStyleBean;
+import com.hailong.biometricprompt.uitls.CipherHelper;
 
 /**
  * Android M == 6.0
@@ -39,33 +38,16 @@ public class FingerprintAndrM implements IFingerprint {
 
     @Override
     public void authenticate(Activity context, VerificationDialogStyleBean bean, FingerprintCallback callback) {
+
+        //判断指纹识别是否可用
+        if (!canAuthenticate(context, callback))
+            return;
+
         this.context = context;
         this.fingerprintCallback = callback;
         //Android 6.0 指纹管理 实例化
         fingerprintManagerCompat = FingerprintManagerCompat.from(context);
-        //硬件是否支持指纹识别
-        if (!fingerprintManagerCompat.isHardwareDetected()) {
-            callback.onError(context.getString(R.string.biometricprompt_verify_error_no_hardware));
-            return;
-        }
-        //是否已添加指纹
-        if (!fingerprintManagerCompat.hasEnrolledFingerprints()) {
-            AlertDialog.Builder lertDialogBuilder = new AlertDialog.Builder(context);
-            lertDialogBuilder.setTitle(context.getString(R.string.biometricprompt_tip))
-                    .setMessage(context.getString(R.string.biometricprompt_finger_add))
-                    .setCancelable(false)
-                    .setNegativeButton(context.getString(R.string.biometricprompt_finger_add_confirm), ((DialogInterface dialog, int which) -> {
-                        Intent intent = new Intent(Settings.ACTION_FINGERPRINT_ENROLL);
-                        context.startActivity(intent);
-                    }
-                    ))
-                    .setPositiveButton(context.getString(R.string.biometricprompt_cancel), ((DialogInterface dialog, int which) -> {
-                        dialog.dismiss();
-                    }
-                    ))
-                    .create().show();
-            return;
-        }
+
         //取消扫描，每次取消后需要重新创建新示例
         cancellationSignal = new CancellationSignal();
         cancellationSignal.setOnCancelListener(() -> fingerprintDialog.dismiss());
@@ -149,5 +131,25 @@ public class FingerprintAndrM implements IFingerprint {
         }
     };
 
+    /*
+     * 在 Android Q，Google 提供了 Api BiometricManager.canAuthenticate() 用来检测指纹识别硬件是否可用及是否添加指纹
+     * 不过尚未开放，标记为"Stub"(存根)
+     * 所以暂时还是需要使用 Andorid 6.0 的 Api 进行判断
+     * */
+    private boolean canAuthenticate(Context context, FingerprintCallback fingerprintCallback) {
+        /*
+         * 硬件是否支持指纹识别
+         * */
+        if (!FingerprintManagerCompat.from(context).isHardwareDetected()) {
+            fingerprintCallback.onError(FingerprintManager.FINGERPRINT_ERROR_HW_NOT_PRESENT, context.getString(R.string.biometricprompt_verify_error_no_hardware));
+            return false;
+        }
+        //是否已添加指纹
+        if (!FingerprintManagerCompat.from(context).hasEnrolledFingerprints()) {
+            fingerprintCallback.onNoneEnrolled();
+            return false;
+        }
+        return true;
+    }
 
 }

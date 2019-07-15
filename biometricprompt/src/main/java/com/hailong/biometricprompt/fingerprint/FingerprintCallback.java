@@ -26,9 +26,14 @@ public interface FingerprintCallback {
     void onCancel();
 
     /**
+     * 未添加指纹
+     */
+    void onNoneEnrolled();
+
+    /**
      * 异常，验证中的异常信息都显示在dialog上，验证前的异常信息通过此回调通知调用者
      *
      * @param errorMsg
      */
-    void onError(String errorMsg);
+    void onError(int msgId, String errorMsg);
 }

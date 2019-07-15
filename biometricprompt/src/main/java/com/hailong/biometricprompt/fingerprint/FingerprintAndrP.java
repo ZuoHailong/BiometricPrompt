@@ -1,19 +1,19 @@
 package com.hailong.biometricprompt.fingerprint;
 
 import android.app.Activity;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.hardware.biometrics.BiometricPrompt;
+import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 import android.os.CancellationSignal;
 import android.text.TextUtils;
-import android.util.Log;
 
 import androidx.annotation.RequiresApi;
+import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 
 import com.hailong.biometricprompt.R;
 import com.hailong.biometricprompt.fingerprint.bean.VerificationDialogStyleBean;
-
-import java.util.concurrent.Executor;
+import com.hailong.biometricprompt.uitls.CipherHelper;
 
 /**
  * Android P == 9.0
@@ -33,6 +33,11 @@ public class FingerprintAndrP implements IFingerprint {
 
     @Override
     public void authenticate(Activity context, VerificationDialogStyleBean verificationDialogStyleBean, FingerprintCallback callback) {
+
+        //判断指纹识别是否可用
+        if (!canAuthenticate(context, callback))
+            return;
+
         this.fingerprintCallback = callback;
 
         /*
@@ -100,7 +105,7 @@ public class FingerprintAndrP implements IFingerprint {
                     fingerprintCallback.onCancel();
                     return;
                 }
-                fingerprintCallback.onError(errString.toString());
+                fingerprintCallback.onError(errorCode, errString.toString());
             }
         }
 
@@ -108,7 +113,7 @@ public class FingerprintAndrP implements IFingerprint {
         public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
             super.onAuthenticationHelp(helpCode, helpString);
             if (fingerprintCallback != null)
-                fingerprintCallback.onError(helpString.toString());
+                fingerprintCallback.onError(helpCode, helpString.toString());
         }
 
         @Override
@@ -125,5 +130,27 @@ public class FingerprintAndrP implements IFingerprint {
                 fingerprintCallback.onFailed();
         }
     };
+
+    /*
+     * 在 Android Q，Google 提供了 Api BiometricManager.canAuthenticate() 用来检测指纹识别硬件是否可用及是否添加指纹
+     * 不过尚未开放，标记为"Stub"(存根)
+     * 所以暂时还是需要使用 Andorid 6.0 的 Api 进行判断
+     * */
+    private boolean canAuthenticate(Context context, FingerprintCallback fingerprintCallback) {
+
+        /*
+         * 硬件是否支持指纹识别
+         * */
+        if (!FingerprintManagerCompat.from(context).isHardwareDetected()) {
+            fingerprintCallback.onError(FingerprintManager.FINGERPRINT_ERROR_HW_NOT_PRESENT, context.getString(R.string.biometricprompt_verify_error_no_hardware));
+            return false;
+        }
+        //是否已添加指纹
+        if (!FingerprintManagerCompat.from(context).hasEnrolledFingerprints()) {
+            fingerprintCallback.onNoneEnrolled();
+            return false;
+        }
+        return true;
+    }
 
 }

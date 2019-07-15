@@ -3,4 +3,6 @@
     <string name="fingerprint_recognition">Fingerprint recognition</string>
     <string name="fingerprint_cancel">Cancel fingerprint recognition. </string>
     <string name="fingerprint_usepwd">Password authentification</string>
+    <string name="biometricprompt_finger_add">Please add fingerprints first.</string>
+    <string name="biometricprompt_finger_add_confirm">Confirm</string>
 </resources>

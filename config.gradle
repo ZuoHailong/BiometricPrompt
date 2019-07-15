@@ -10,19 +10,19 @@ ext {
             versionCode             : 12,                    //版本号
             versionName             : "0.1.2",              //版本名称
 
-            compileSdkVersion       : 28,
+            compileSdkVersion       : 29,
             minSdkVersion           : 19,
-            targetSdkVersion        : 28,
+            targetSdkVersion        : 29,
 
-            androidSupportSdkVersion: "28.0.0",
+            androidSupportSdkVersion: "29.0.0",
             appcompatVersion        : "1.0.0",
             constraintlayoutVersion : "1.1.3",
             junitVersion            : "4.12",
             runnerVersion           : "1.1.0",
             espressoVersion         : "3.1.0",
-            annotationsVersion      : "28.0.0",
+            annotationsVersion      : "29.0.0",
 
-            biometricpromptVersion  : "0.1.1"
+            biometricpromptVersion  : "0.1.2"
     ]
 
     dependencies = [

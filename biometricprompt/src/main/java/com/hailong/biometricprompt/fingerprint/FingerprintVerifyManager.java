@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.hardware.fingerprint.FingerprintManager;
 import android.provider.Settings;
 
 import androidx.annotation.ColorInt;
@@ -28,7 +29,7 @@ public class FingerprintVerifyManager {
         } else if (AndrVersionUtil.isAboveAndrM()) {
             fingerprint = FingerprintAndrM.newInstance();
         } else {//Android 6.0 以下官方未开放指纹识别，某些机型自行支持的情况暂不做处理
-            builder.callback.onError(builder.context.getString(R.string.biometricprompt_verify_error_below_m));
+            builder.callback.onError(FingerprintManager.FINGERPRINT_ERROR_HW_NOT_PRESENT, builder.context.getString(R.string.biometricprompt_verify_error_below_m));
             return;
         }
         /**

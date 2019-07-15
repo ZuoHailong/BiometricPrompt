@@ -1,4 +1,4 @@
-package com.hailong.biometricprompt.fingerprint;
+package com.hailong.biometricprompt.uitls;
 
 import android.hardware.biometrics.BiometricPrompt;
 import android.os.Build;
