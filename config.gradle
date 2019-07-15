@@ -7,8 +7,8 @@ ext {
      */
     versions = [
             applicationId           : "com.hailong.biometricprompt",        //应用ID
-            versionCode             : 12,                    //版本号
-            versionName             : "0.1.2",              //版本名称
+            versionCode             : 20,                    //版本号
+            versionName             : "0.2",              //版本名称
 
             compileSdkVersion       : 29,
             minSdkVersion           : 19,
@@ -22,7 +22,7 @@ ext {
             espressoVersion         : "3.1.0",
             annotationsVersion      : "29.0.0",
 
-            biometricpromptVersion  : "0.1.2"
+            biometricpromptVersion  : "0.2"
     ]
 
     dependencies = [
