@@ -1,6 +1,8 @@
 # BiometricPrompt
 
-生物识别库，目前仅支持指纹识别，计划实现面部识别
+生物识别库，目前仅支持指纹识别，计划实现面部识别。
+
+关于指纹识别的实现过程，请移步博客：[Android 指纹识别，提升APP用户体验，从这里开始](https://blog.csdn.net/hailong0529/article/details/95406183)
 
 ` 注意：兼容 Android 6.0 及以上系统，某些 Android 6.0 以下系统的手机自行支持指纹识别的未做兼容 `
 
