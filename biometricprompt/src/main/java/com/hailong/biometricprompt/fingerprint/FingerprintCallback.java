@@ -5,6 +5,17 @@ package com.hailong.biometricprompt.fingerprint;
  * Created by ZuoHailong on 2019/7/9.
  */
 public interface FingerprintCallback {
+
+    /**
+     * 无指纹硬件或者指纹硬件不可用
+     */
+    void onHwUnavailable();
+
+    /**
+     * 未添加指纹
+     */
+    void onNoneEnrolled();
+
     /**
      * 验证成功
      */
@@ -24,11 +35,6 @@ public interface FingerprintCallback {
      * 取消验证
      */
     void onCancel();
-
-    /**
-     * 未添加指纹
-     */
-    void onNoneEnrolled();
 
     /**
      * 异常，验证中的异常信息都显示在dialog上，验证前的异常信息通过此回调通知调用者

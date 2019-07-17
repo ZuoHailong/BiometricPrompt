@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.hardware.biometrics.BiometricManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
@@ -51,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onCancel() {
             Toast.makeText(MainActivity.this, getString(R.string.fingerprint_cancel), Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onHwUnavailable() {
+            Toast.makeText(MainActivity.this, getString(R.string.biometricprompt_finger_hw_unavailable), Toast.LENGTH_SHORT).show();
         }
 
         @Override

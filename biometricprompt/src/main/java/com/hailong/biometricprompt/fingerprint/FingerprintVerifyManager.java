@@ -2,6 +2,7 @@ package com.hailong.biometricprompt.fingerprint;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
@@ -9,6 +10,7 @@ import android.provider.Settings;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 
 import com.hailong.biometricprompt.R;
 import com.hailong.biometricprompt.fingerprint.bean.VerificationDialogStyleBean;
@@ -29,7 +31,11 @@ public class FingerprintVerifyManager {
         } else if (AndrVersionUtil.isAboveAndrM()) {
             fingerprint = FingerprintAndrM.newInstance();
         } else {//Android 6.0 以下官方未开放指纹识别，某些机型自行支持的情况暂不做处理
-            builder.callback.onError(FingerprintManager.FINGERPRINT_ERROR_HW_NOT_PRESENT, builder.context.getString(R.string.biometricprompt_verify_error_below_m));
+            builder.callback.onHwUnavailable();
+            return;
+        }
+        //检测指纹硬件是否存在或者是否可用，若false，不再弹出指纹验证框
+        if (!fingerprint.canAuthenticate(builder.context, builder.callback)) {
             return;
         }
         /**

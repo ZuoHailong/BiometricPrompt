@@ -34,10 +34,6 @@ public class FingerprintAndrP implements IFingerprint {
     @Override
     public void authenticate(Activity context, VerificationDialogStyleBean verificationDialogStyleBean, FingerprintCallback callback) {
 
-        //判断指纹识别是否可用
-        if (!canAuthenticate(context, callback))
-            return;
-
         this.fingerprintCallback = callback;
 
         /*
@@ -136,13 +132,14 @@ public class FingerprintAndrP implements IFingerprint {
      * 不过尚未开放，标记为"Stub"(存根)
      * 所以暂时还是需要使用 Andorid 6.0 的 Api 进行判断
      * */
-    private boolean canAuthenticate(Context context, FingerprintCallback fingerprintCallback) {
+    @Override
+    public boolean canAuthenticate(Context context, FingerprintCallback fingerprintCallback) {
 
         /*
          * 硬件是否支持指纹识别
          * */
         if (!FingerprintManagerCompat.from(context).isHardwareDetected()) {
-            fingerprintCallback.onError(FingerprintManager.FINGERPRINT_ERROR_HW_NOT_PRESENT, context.getString(R.string.biometricprompt_verify_error_no_hardware));
+            fingerprintCallback.onHwUnavailable();
             return false;
         }
         //是否已添加指纹

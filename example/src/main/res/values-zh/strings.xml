@@ -5,4 +5,5 @@
     <string name="fingerprint_usepwd">密码验证</string>
     <string name="biometricprompt_finger_add">请先添加指纹</string>
     <string name="biometricprompt_finger_add_confirm">确认添加</string>
+    <string name="biometricprompt_finger_hw_unavailable">指纹模块不可用</string>
 </resources>

@@ -5,7 +5,6 @@
     <string name="biometricprompt_verify_usepwd">密码验证</string>
     <string name="biometricprompt_verify_success">验证成功</string>
     <string name="biometricprompt_verify_failed">验证失败</string>
-    <string name="biometricprompt_verify_error_below_m">Android 6.0 以下不提供指纹识别支持</string>
     <string name="biometricprompt_verify_error_no_hardware">此设备不支持指纹识别</string>
     <string name="biometricprompt_cancel">取&#160;消</string>
 </resources>
