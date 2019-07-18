@@ -8,6 +8,7 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 import androidx.core.os.CancellationSignal;
+import androidx.fragment.app.FragmentActivity;
 
 import com.hailong.biometricprompt.R;
 import com.hailong.biometricprompt.fingerprint.bean.VerificationDialogStyleBean;
@@ -51,7 +52,7 @@ public class FingerprintAndrM implements IFingerprint {
         //调起指纹验证
         fingerprintManagerCompat.authenticate(cryptoObject, 0, cancellationSignal, authenticationCallback, null);
         //指纹验证框
-        fingerprintDialog = FingerprintDialog.newInstance(context).setActionListener(dialogActionListener).setDialogStyle(bean);
+        fingerprintDialog = FingerprintDialog.newInstance().setActionListener(dialogActionListener).setDialogStyle(bean);
         fingerprintDialog.show(context.getFragmentManager(), TAG);
     }
 
@@ -102,7 +103,8 @@ public class FingerprintAndrM implements IFingerprint {
         @Override
         public void onAuthenticationError(int errMsgId, CharSequence errString) {
             super.onAuthenticationError(errMsgId, errString);
-            fingerprintDialog.setTip(errString.toString(), R.color.biometricprompt_color_FF5555);
+            if (errMsgId != 5)//用户取消指纹验证
+                fingerprintDialog.setTip(errString.toString(), R.color.biometricprompt_color_FF5555);
         }
 
         @Override

@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,7 +25,6 @@ import com.hailong.biometricprompt.fingerprint.bean.VerificationDialogStyleBean;
  */
 public class FingerprintDialog extends DialogFragment {
 
-    private static Context context;
     private static FingerprintDialog mDialog;
     private OnDialogActionListener actionListener;
     private TextView tvTip, tvCancel, tvUsepwd;
@@ -86,7 +84,7 @@ public class FingerprintDialog extends DialogFragment {
             actionListener.onDismiss();
     }
 
-    public static FingerprintDialog newInstance(Context context) {
+    public static FingerprintDialog newInstance() {
         if (mDialog == null) {
             synchronized (FingerprintDialog.class) {
                 if (mDialog == null) {
@@ -94,7 +92,6 @@ public class FingerprintDialog extends DialogFragment {
                 }
             }
         }
-        FingerprintDialog.context = context;
         return mDialog;
     }
 
@@ -121,7 +118,7 @@ public class FingerprintDialog extends DialogFragment {
      */
     public void setTip(String tip, @ColorRes int colorId) {
         tvTip.setText(tip);
-        tvTip.setTextColor(ContextCompat.getColor(context, colorId));
+        tvTip.setTextColor(getResources().getColor(colorId));
     }
 
     public interface OnDialogActionListener {

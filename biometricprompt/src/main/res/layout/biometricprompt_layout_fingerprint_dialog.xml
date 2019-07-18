@@ -11,7 +11,7 @@
         android:background="@color/biometricprompt_color_ffffff"
         android:orientation="vertical">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivFingerprint"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:orientation="horizontal">
-            
+
             <TextView
                 android:id="@+id/tvCancel"
                 android:layout_width="match_parent"

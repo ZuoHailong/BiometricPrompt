@@ -2,6 +2,7 @@ package com.hailong.biometricprompt.example;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -15,7 +16,7 @@ import android.widget.Toast;
 import com.hailong.biometricprompt.fingerprint.FingerprintCallback;
 import com.hailong.biometricprompt.fingerprint.FingerprintVerifyManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +25,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.tvFingerprint).setOnClickListener(v -> {
             FingerprintVerifyManager.Builder builder = new FingerprintVerifyManager.Builder(MainActivity.this);
             builder.callback(fingerprintCallback)
-                    .cancelTextColor(ContextCompat.getColor(MainActivity.this, R.color.biometricprompt_color_primary))
-                    .usepwdTextColor(ContextCompat.getColor(MainActivity.this, R.color.biometricprompt_color_FF5555))
-                    .fingerprintColor(ContextCompat.getColor(MainActivity.this, R.color.biometricprompt_color_primary))
-                    .usepwdVisible(true)
-                    .enableAndroidP(true)
+                    .fingerprintColor(ContextCompat.getColor(MainActivity.this, R.color.colorPrimary))
                     .build();
         });
     }
