@@ -7,8 +7,8 @@ ext {
      */
     versions = [
             applicationId           : "com.hailong.biometricprompt",        //应用ID
-            versionCode             : 22,                    //版本号
-            versionName             : "0.2.2",              //版本名称
+            versionCode             : 23,                    //版本号
+            versionName             : "0.2.3",              //版本名称
 
             compileSdkVersion       : 29,
             minSdkVersion           : 19,

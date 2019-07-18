@@ -75,10 +75,5 @@ public class MainActivity extends FragmentActivity {
                     .create().show();
         }
 
-        @Override
-        public void onError(int msgId, String errorMsg) {
-            Toast.makeText(MainActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
-        }
-
     };
 }

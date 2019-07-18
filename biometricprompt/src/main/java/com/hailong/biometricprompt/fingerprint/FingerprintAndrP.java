@@ -101,15 +101,12 @@ public class FingerprintAndrP implements IFingerprint {
                     fingerprintCallback.onCancel();
                     return;
                 }
-                fingerprintCallback.onError(errorCode, errString.toString());
             }
         }
 
         @Override
         public void onAuthenticationHelp(int helpCode, CharSequence helpString) {
             super.onAuthenticationHelp(helpCode, helpString);
-            if (fingerprintCallback != null)
-                fingerprintCallback.onError(helpCode, helpString.toString());
         }
 
         @Override
