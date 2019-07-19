@@ -24,7 +24,7 @@
 
 ```
     dependencies {
-            implementation 'com.github.ZuoHailong:BiometricPrompt:0.2.1'
+            implementation 'com.github.ZuoHailong:BiometricPrompt:0.2.3'
 	}
 	
 ```
@@ -39,7 +39,7 @@
 
 - FingerprintVerifyManager 通过 Builder 初始化并管理指纹识别功能
 
-- FingerprintCallback 指纹识别监听，提供 onSucceeded()、onFailed()、onCancel()、onUsepwd() 、onNoneEnrolled()、onHwUnavailable()、onError(int msgId, String errorMsg) 七个回调方法
+- FingerprintCallback 指纹识别监听，提供 onSucceeded()、onFailed()、onCancel()、onUsepwd() 、onNoneEnrolled()、onHwUnavailable() 七个回调方法
 
     当用户取消指纹验证框时，回调 onCancel() 方法；
     
@@ -48,8 +48,6 @@
     当手机上未添加指纹时，回调 onNoneEnrolled() 方法
     
     当硬件模块不可用时，回调 onHwUnavailable() 方法
-    
-    当指纹验证出现异常时，回调 onError(int msgId, String errorMsg) 方法返回具体异常信息，诸如 “手指移动过快” “尝试次数过多” 等，其中 msgId 是 Android 系统提供的，如需使用，可参考开发者文档中的具体说明。
     
 ## Builder详细用法
 
