@@ -39,7 +39,7 @@
 
 - FingerprintVerifyManager 通过 Builder 初始化并管理指纹识别功能
 
-- FingerprintCallback 指纹识别监听，提供 onSucceeded()、onFailed()、onCancel()、onUsepwd() 、onNoneEnrolled()、onHwUnavailable() 七个回调方法
+- FingerprintCallback 指纹识别监听，提供 onSucceeded()、onFailed()、onCancel()、onUsepwd() 、onNoneEnrolled()、onHwUnavailable() 六个回调方法
 
     当用户取消指纹验证框时，回调 onCancel() 方法；
     
