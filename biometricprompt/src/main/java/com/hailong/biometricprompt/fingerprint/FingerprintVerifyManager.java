@@ -72,7 +72,8 @@ public class FingerprintVerifyManager {
         private int fingerprintColor;
         private boolean usepwdVisible;
 
-        private boolean enableAndroidP;//在Android 9.0系统上，是否开启google提供的验证方式及验证框
+        //在Android 9.0系统上，是否使用系统验证框
+        private boolean enableAndroidP;
         private String title;
         private String subTitle;
         private String description;

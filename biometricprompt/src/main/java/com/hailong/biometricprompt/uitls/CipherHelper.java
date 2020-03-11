@@ -1,13 +1,11 @@
 package com.hailong.biometricprompt.uitls;
 
-import android.hardware.biometrics.BiometricPrompt;
 import android.os.Build;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 
 import java.security.Key;
 import java.security.KeyStore;
@@ -21,19 +19,17 @@ import javax.crypto.KeyGenerator;
 @RequiresApi(Build.VERSION_CODES.M)
 public class CipherHelper {
     // This can be key name you want. Should be unique for the app.
-    static final String KEY_NAME = "com.hailong.fingerprint.CipherHelper";
+    private static final String KEY_NAME = "com.hailong.fingerprint.CipherHelper";
 
     // We always use this keystore on Android.
-    static final String KEYSTORE_NAME = "AndroidKeyStore";
+    private static final String KEYSTORE_NAME = "AndroidKeyStore";
 
     // Should be no need to change these values.
-    static final String KEY_ALGORITHM = KeyProperties.KEY_ALGORITHM_AES;
-    static final String BLOCK_MODE = KeyProperties.BLOCK_MODE_CBC;
-    static final String ENCRYPTION_PADDING = KeyProperties.ENCRYPTION_PADDING_PKCS7;
-    static final String TRANSFORMATION = KEY_ALGORITHM + "/" +
-            BLOCK_MODE + "/" +
-            ENCRYPTION_PADDING;
-    final KeyStore _keystore;
+    private static final String KEY_ALGORITHM = KeyProperties.KEY_ALGORITHM_AES;
+    private static final String BLOCK_MODE = KeyProperties.BLOCK_MODE_CBC;
+    private static final String ENCRYPTION_PADDING = KeyProperties.ENCRYPTION_PADDING_PKCS7;
+    private static final String TRANSFORMATION = KEY_ALGORITHM + "/" + BLOCK_MODE + "/" + ENCRYPTION_PADDING;
+    private final KeyStore _keystore;
 
     public CipherHelper() throws Exception {
         _keystore = KeyStore.getInstance(KEYSTORE_NAME);
@@ -42,6 +38,7 @@ public class CipherHelper {
 
     /**
      * 获得Cipher
+     *
      * @return
      */
     public Cipher createCipher() {
@@ -71,9 +68,8 @@ public class CipherHelper {
             _keystore.deleteEntry(KEY_NAME);
             if (retry) {
                 createCipher(false);
-            } else {
-                throw new Exception("Could not create the cipher for fingerprint authentication.", e);
             }
+            throw new Exception("Could not create the cipher for fingerprint authentication.", e);
         }
         return cipher;
     }

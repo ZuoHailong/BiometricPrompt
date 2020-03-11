@@ -4,13 +4,7 @@
 
 关于指纹识别的详细介绍，请移步博客：[Android 指纹识别，提升APP用户体验，从这里开始](https://blog.csdn.net/hailong0529/article/details/95406183)
 
-` 注意：兼容 Android 6.0 及以上系统，某些 Android 6.0 以下系统的手机自行支持指纹识别的未做兼容 `
-
-## 示例
-
-![验证指纹（Android 6.0 自定义指纹识别框）](https://raw.githubusercontent.com/ZuoHailong/BiometricPrompt/master/example/file/verifyM.png)
-![验证指纹（Android 9.0 系统提供的指纹识别框）](https://raw.githubusercontent.com/ZuoHailong/BiometricPrompt/master/example/file/verifyP.png)
-![验证失败（指纹识别异常）](https://raw.githubusercontent.com/ZuoHailong/BiometricPrompt/master/example/file/fail.png)
+` 注意：兼容 Android 6.0 及以上系统；某些 Android 6.0 以下系统的手机厂商会自行支持指纹识别，这种情况未做兼容。 `
 
 ## 功能介绍
 
@@ -20,19 +14,29 @@
 
 - 实现国际化（支持中文和英文）
 
+## 示例
+
+图1、自定义指纹识别弹窗
+图2、验证异常
+图3、Android 9.0+，系统提供的指纹识别弹窗
+
+![验证指纹（Android 6.0 自定义指纹识别框）](https://raw.githubusercontent.com/ZuoHailong/BiometricPrompt/master/example/file/verifyM.png)
+![验证失败（指纹识别异常）](https://raw.githubusercontent.com/ZuoHailong/BiometricPrompt/master/example/file/fail.png)
+![验证指纹（Android 9.0 系统提供的指纹识别框）](https://raw.githubusercontent.com/ZuoHailong/BiometricPrompt/master/example/file/verifyP.png)
+
 ## Gradle依赖
 
 ```
-    dependencies {
-            implementation 'com.github.ZuoHailong:BiometricPrompt:0.2.3'
-	}
+dependencies {
+        implementation 'com.github.ZuoHailong:BiometricPrompt:1.0'
+}
 	
 ```
-## 指纹识别用法简述
+## 用法简述
 ```
 
-    FingerprintVerifyManager.Builder builder = new FingerprintVerifyManager.Builder(MainActivity.this);
-    builder.callback(new FingerprintCallback()).build();
+FingerprintVerifyManager.Builder builder = new FingerprintVerifyManager.Builder(MainActivity.this);
+builder.callback(new FingerprintCallback()).build();
     
 ```
 使用指纹识别功能，只需要关心 FingerprintVerifyManager 和 FingerprintCallback 两个类：
@@ -43,11 +47,11 @@
 
     当用户取消指纹验证框时，回调 onCancel() 方法；
     
-    当用户选择密码验证时，回调 onUsepwd() 方法
+    当用户选择密码验证时，回调 onUsepwd() 方法；
     
-    当手机上未添加指纹时，回调 onNoneEnrolled() 方法
+    当手机上未添加指纹时，回调 onNoneEnrolled() 方法；
     
-    当硬件模块不可用时，回调 onHwUnavailable() 方法
+    当硬件模块不可用时，回调 onHwUnavailable() 方法。
     
 ## Builder详细用法
 
@@ -63,7 +67,7 @@ builder.callback(new FingerprintCallback())
 ```
 builder.build()
 ```
-### 以下方法适用于 Android 6.0 自定义识别框的情况
+### 适用于自定义识别框的 api
 #### 4、设置验证框中指纹图标的颜色，可选
 ```
 builder.fingerprintColor(@ColorInt int color)
@@ -80,11 +84,12 @@ builder.usepwdVisible(boolean isVisible)
 ```
 builder.usepwdTextColor(@ColorInt int color)
 ```
-### 以下方法适用于 Android 9.0 系统提供识别框的情况
+### 适用于 Android 9.0+ 系统提供识别框的 api
 #### 8、在 Android 9.0+ 是否启用系统提供的识别框，默认不启用，可选
 ```
 builder.enableAndroidP(boolean enableAndroidP)
 ```
+如果启用，在 Android 9.0 以下系统会使用自定义识别弹窗，在 Android 9.0+ 系统会使用系统识别弹窗。
 #### 9、识别框的主标题，默认“指纹验证”，可选
 ```
 builder.title(String title)
@@ -102,8 +107,4 @@ builder.description(String description)
 builder.cancelBtnText(String cancelBtnText)
 ```
 
-* 注意：上述适用于 Android 6.0 的 API 和适用于 Android 9.0 的 API 并不是互斥的。
-
-
-### 更多功能待续……
 

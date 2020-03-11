@@ -103,7 +103,8 @@ public class FingerprintAndrM implements IFingerprint {
         @Override
         public void onAuthenticationError(int errMsgId, CharSequence errString) {
             super.onAuthenticationError(errMsgId, errString);
-            if (errMsgId != 5)//用户取消指纹验证
+            //errMsgId==5时，在OnDialogActionListener的onCancle回调中处理；！=5的报错，才需要显示在指纹验证框中。
+            if (errMsgId != 5)
                 fingerprintDialog.setTip(errString.toString(), R.color.biometricprompt_color_FF5555);
         }
 

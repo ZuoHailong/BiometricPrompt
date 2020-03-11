@@ -1,17 +1,14 @@
 package com.hailong.biometricprompt.example;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.hardware.biometrics.BiometricManager;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.view.View;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import com.hailong.biometricprompt.fingerprint.FingerprintCallback;
 import com.hailong.biometricprompt.fingerprint.FingerprintVerifyManager;
@@ -59,8 +56,8 @@ public class MainActivity extends FragmentActivity {
         @Override
         public void onNoneEnrolled() {
             //弹出提示框，跳转指纹添加页面
-            AlertDialog.Builder lertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
-            lertDialogBuilder.setTitle(getString(R.string.biometricprompt_tip))
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setTitle(getString(R.string.biometricprompt_tip))
                     .setMessage(getString(R.string.biometricprompt_finger_add))
                     .setCancelable(false)
                     .setNegativeButton(getString(R.string.biometricprompt_finger_add_confirm), ((DialogInterface dialog, int which) -> {

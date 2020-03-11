@@ -32,6 +32,6 @@ dependencies {
     implementation rootProject.ext.dependencies["espresso_core"]
     implementation rootProject.ext.dependencies["constraintlayout"]
 
-    api project(':biometricprompt')
+    implementation project(':biometricprompt')
 //    api rootProject.ext.dependencies["biometricprompt"]
 }

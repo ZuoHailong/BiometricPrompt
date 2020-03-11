@@ -39,11 +39,8 @@ public class FingerprintAndrP implements IFingerprint {
         /*
          * 初始化 BiometricPrompt.Builder
          */
-        String title = TextUtils.isEmpty(verificationDialogStyleBean.getTitle()) ?
-                context.getString(R.string.biometricprompt_fingerprint_verification) :
-                verificationDialogStyleBean.getTitle();
-        String cancelText = TextUtils.isEmpty(verificationDialogStyleBean.getCancelBtnText()) ?
-                context.getString(R.string.biometricprompt_cancel) :
+        String title = TextUtils.isEmpty(verificationDialogStyleBean.getTitle()) ? context.getString(R.string.biometricprompt_fingerprint_verification) : verificationDialogStyleBean.getTitle();
+        String cancelText = TextUtils.isEmpty(verificationDialogStyleBean.getCancelBtnText()) ? context.getString(R.string.biometricprompt_cancel) :
                 verificationDialogStyleBean.getCancelBtnText();
         BiometricPrompt.Builder builder = new BiometricPrompt.Builder(context)
                 .setTitle(title)

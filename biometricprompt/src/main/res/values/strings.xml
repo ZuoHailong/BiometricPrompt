@@ -1,10 +1,10 @@
 <resources>
-    <string name="biometricprompt_tip">提&#160;示</string>
-    <string name="biometricprompt_fingerprint_verification">指纹验证</string>
-    <string name="biometricprompt_verify_fingerprint">请验证您的指纹</string>
-    <string name="biometricprompt_verify_usepwd">密码验证</string>
-    <string name="biometricprompt_verify_success">验证成功</string>
-    <string name="biometricprompt_verify_failed">验证失败</string>
-    <string name="biometricprompt_verify_error_no_hardware">此设备不支持指纹识别</string>
-    <string name="biometricprompt_cancel">取&#160;消</string>
+    <string name="biometricprompt_tip">Tip</string>
+    <string name="biometricprompt_fingerprint_verification">Fingerprint Verification</string>
+    <string name="biometricprompt_verify_fingerprint">Please verify your fingerprints.</string>
+    <string name="biometricprompt_verify_usepwd">Enter password</string>
+    <string name="biometricprompt_verify_success">Verification success</string>
+    <string name="biometricprompt_verify_failed">Verification failure</string>
+    <string name="biometricprompt_verify_error_no_hardware">This device does not support fingerprint recognition. </string>
+    <string name="biometricprompt_cancel">Cancel</string>
 </resources>
