@@ -3,14 +3,14 @@ apply plugin: 'com.github.dcendents.android-maven'
 group = 'com.github.ZuoHailong'
 
 android {
-    compileSdkVersion rootProject.ext.versions.compileSdkVersion
+    compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion rootProject.ext.versions.minSdkVersion
-        targetSdkVersion rootProject.ext.versions.targetSdkVersion
-        versionCode rootProject.ext.versions.versionCode
-        versionName rootProject.ext.versions.versionName
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 101
+        versionName  "1.0.1-support"
+//        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -37,10 +37,10 @@ allprojects {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation rootProject.ext.dependencies["appcompat"]
-    implementation rootProject.ext.dependencies["junit"]
-    implementation rootProject.ext.dependencies["runner"]
-    implementation rootProject.ext.dependencies["espresso_core"]
-    implementation rootProject.ext.dependencies["constraintlayout"]
+    implementation "com.android.support:appcompat-v7:28.0.0"
+    implementation "junit:junit:4.12"
+    implementation "com.android.support.test:runner:1.0.2"
+    implementation "com.android.support.test.espresso:espresso-core:3.0.2"
+    implementation "com.android.support.constraint:constraint-layout:1.1.3"
 
 }

@@ -11,7 +11,7 @@
         android:background="@color/biometricprompt_color_ffffff"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <android.support.v7.widget.AppCompatImageView
             android:id="@+id/ivFingerprint"
             android:layout_width="60dp"
             android:layout_height="60dp"

@@ -1,2 +1,1 @@
-include ':example',
-        ':biometricprompt'
+include ':example', ':biometricprompt'

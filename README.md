@@ -28,11 +28,19 @@
 
 ## Gradle依赖
 
+建议使用 androidx 版本：
 ```
 dependencies {
         implementation 'com.github.ZuoHailong:BiometricPrompt:1.0'
 }
 	
+```
+如果你的项目还未使用 androidx，可使用以下 support 版本：
+```
+dependencies {
+        implementation 'com.github.ZuoHailong:BiometricPrompt:1.0.1-support'
+}
+
 ```
 ## 用法简述
 ```

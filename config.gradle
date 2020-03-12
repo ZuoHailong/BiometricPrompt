@@ -8,28 +8,28 @@ ext {
     versions = [
             applicationId           : "com.hailong.biometricprompt",        //应用ID
             versionCode             : 100,                    //版本号
-            versionName             : "1.0",              //版本名称
+            versionName             : "1.0-support",              //版本名称
 
-            compileSdkVersion       : 29,
+            compileSdkVersion       : 28,
             minSdkVersion           : 19,
-            targetSdkVersion        : 29,
+            targetSdkVersion        : 28,
 
-            androidSupportSdkVersion: "29.0.0",
+            androidSupportSdkVersion: "28.0.0",
             appcompatVersion        : "1.0.0",
-            constraintlayoutVersion : "1.1.3",
+            constraintlayoutVersion : "1.1.0-beta4",
             junitVersion            : "4.12",
-            runnerVersion           : "1.1.0",
-            espressoVersion         : "3.1.0",
-            annotationsVersion      : "29.0.0",
+            runnerVersion           : "1.0.2",
+            espressoVersion         : "3.0.2",
+            annotationsVersion      : "28.0.0",
 
-            biometricpromptVersion  : "1.0"
+            biometricpromptVersion  : "1.0-support"
     ]
 
     dependencies = [
-            "appcompat"          : "androidx.appcompat:appcompat:${versions["appcompatVersion"]}",
-            "constraintlayout"   : "androidx.constraintlayout:constraintlayout:${versions["constraintlayoutVersion"]}",
-            "runner"             : "androidx.test:runner:${versions["runnerVersion"]}",
-            "espresso_core"      : "androidx.test.espresso:espresso-core:${versions["espressoVersion"]}",
+            "appcompat"          : "com.android.support:appcompat-v7:${versions["androidSupportSdkVersion"]}",
+            "constraintlayout"   : "com.android.support.constraint:constraint-layout:${versions["constraintlayoutVersion"]}",
+            "runner"             : "com.android.support.test:runner:${versions["runnerVersion"]}",
+            "espresso_core"      : "com.android.support.test.espresso:espresso-core:${versions["espressoVersion"]}",
             "junit"              : "junit:junit:${versions["junitVersion"]}",
             //注释处理器
             "support_annotations": "com.android.support:support-annotations:${versions["annotationsVersion"]}",

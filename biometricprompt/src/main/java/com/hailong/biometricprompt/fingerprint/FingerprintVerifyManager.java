@@ -1,18 +1,9 @@
 package com.hailong.biometricprompt.fingerprint;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.hardware.fingerprint.FingerprintManager;
-import android.provider.Settings;
+import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
-
-import com.hailong.biometricprompt.R;
 import com.hailong.biometricprompt.fingerprint.bean.VerificationDialogStyleBean;
 import com.hailong.biometricprompt.uitls.AndrVersionUtil;
 
