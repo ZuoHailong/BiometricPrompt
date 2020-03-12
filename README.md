@@ -17,7 +17,9 @@
 ## 示例
 
 图1、自定义指纹识别弹窗
+
 图2、验证异常
+
 图3、Android 9.0+，系统提供的指纹识别弹窗
 
 ![验证指纹（Android 6.0 自定义指纹识别框）](https://raw.githubusercontent.com/ZuoHailong/BiometricPrompt/master/example/file/verifyM.png)
